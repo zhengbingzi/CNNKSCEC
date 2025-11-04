@@ -3,6 +3,7 @@ CNNKSCEC:A Deep Learning–Based Framework for Chromatin Loop Prediction with Mu
 # Installation
 CNNKSCEC requires Python3 and several scientific packages to run.
 ```
+git clone https://github.com/zhengbingzi/CNNKSCEC.git
 conda create -n CNNKSCEC python=3.7.12
 conda activate CNNKSCEC
 ```
@@ -131,4 +132,5 @@ bash peakachucluster.sh
 [location21]                 The end position of the right anchor of the chromatin loop
 [predictions]                The predictions of chromatin loop
 [infy]                       The interaction strength of chromatin loop
+
 ```
