@@ -21,7 +21,7 @@ pysam
 juicer_tools
 # Usage
 ## Data preparation
-Data preparation mainly involves:downloading the.hic file and extracting the hic contact matrix from the.hic file, and generating the hic submatrix;downloading the bigwig file based on DNASE-seq and generating the corresponding dnase submatrix.
+Data preparation mainly involves:downloading the.hic file and extracting the hic contact matrix from the.hic file, and generating the hic submatrix;downloading the bigwig file based on DNase-seq and generating the corresponding dnase submatrix.
 ### Extracting Hi-C contact matrix from.hic file
 The process obtains the hic contact matrix for each chromosome from the.hic file.  
 This process extracts the hic contact matrix of each chromosome at a specific resolution from the.hic file. It will output frequency_matrix file.
@@ -134,3 +134,4 @@ bash peakachucluster.sh
 [infy]                       The interaction strength of chromatin loop
 
 ```
+
