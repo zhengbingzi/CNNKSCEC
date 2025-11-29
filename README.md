@@ -53,7 +53,7 @@ Note that this experiment is conducted at a 5kb resolution. To perform experimen
 ### Get the training negative sample of Hi-C
 First, generate different types of negative sample center point files based on the positive sample center point file by running get_trainnegative_point.py, which will output the negative sample center point file.
 ```
-python get_trainnegative_sample.py -x [frequence_matrix_dir] -p [NegativeTxt_dir] -o [Negativenpy_dir] -n [negative_name_sort_dir] -i [Interaction_frequency_dir] 
+python get_trainnegative_point.py -p [PositiveTxt_dir] -n [norm_factor_dir] -o [NegativeTxt_dir] 
 ```
 Then, split the negative sample center point file for each chromosome into 100 parts for further screening. The valid center points with an interaction frequency greater than 1 are selected, and the filtered negative samples along with their center point files are stored.
 ```
@@ -134,4 +134,5 @@ bash peakachucluster.sh
 [infy]                       The interaction strength of chromatin loop
 
 ```
+
 
