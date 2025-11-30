@@ -65,7 +65,7 @@ python merge_negpoint_fin.py
 ```
 Merge the negative samples for each chromosome, and run:
 ```
-merge_chr_npy.py -p [Negativenpy_dir] -o [Negativenpy_Fin_dir]
+python merge_chr_npy.py -f [Negativenpy_dir] -o [Negativenpy_Fin_dir]
 ```
 Here,the input file is the path to the Negativenpy file, and the output will be the path to the final negative sample file.
 ### Get the training positive sample of DNase
@@ -134,5 +134,6 @@ bash peakachucluster.sh
 [infy]                       The interaction strength of chromatin loop
 
 ```
+
 
 
