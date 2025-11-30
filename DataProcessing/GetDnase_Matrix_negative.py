@@ -87,5 +87,5 @@ if __name__ == '__main__':
         resou = 5000
         all_matrix1 = generateATAC(files_center_point, files_dnase, resou)
         all_matrix_array = np.array(all_matrix1)
-        np.save('基于 DNase-seq 的 BigWig 格式文件/DNase/dnase_chr' + str(a[n]) + '_0.npy', all_matrix_array)
+        np.save('path/of/DNase/dnase_chr' + str(a[n]) + '_0.npy', all_matrix_array)
         print('chr' + str(a[n]) + '已完成')
