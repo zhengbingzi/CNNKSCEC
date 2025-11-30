@@ -18,6 +18,8 @@ pandas
 h5py   
 cooler
 pysam  
+pyBigWig
+tqdm
 juicer_tools
 # Usage
 ## Data preparation
@@ -134,6 +136,7 @@ bash peakachucluster.sh
 [infy]                       The interaction strength of chromatin loop
 
 ```
+
 
 
 
