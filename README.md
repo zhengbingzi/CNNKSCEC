@@ -52,6 +52,10 @@ python get_trainpositive_sample.py -d [PositiveTxt_dir] -b [frequence_matrix_dir
 ```
 The get_trainpositive_point.py file outputs the coordinates of the positive sample center points, while the get_trainpositive_sample.py file outputs the Hi-C positive sample matrix files.
 Note that this experiment is conducted at a 5kb resolution. To perform experiments at different resolutions, please modify the resolution value in the corresponding locations in the ctcf_h3k27ac_merge.py and get_trainpositive_point.py files. When running get_trainpositive_sample.py, pass the resolution parameter -r [res] via the command line.
+Add each column of the positive sample center point coordinates file to the corresponding position in the positive sample matrix file to generate a location-based positive sample matrix file. And run：
+```
+python merge_txtand_npy.py
+```
 ### Get the training negative sample of Hi-C
 First, generate different types of negative sample center point files based on the positive sample center point file by running get_trainnegative_point.py, which will output the negative sample center point file.
 ```
@@ -136,6 +140,7 @@ bash peakachucluster.sh
 [infy]                       The interaction strength of chromatin loop
 
 ```
+
 
 
 
