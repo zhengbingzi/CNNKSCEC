@@ -55,6 +55,7 @@ Note that this experiment is conducted at a 5kb resolution. To perform experimen
 ```
 Add each column of the positive sample center point coordinates file to the corresponding position in the positive sample matrix file to generate a location-based positive sample matrix file. And run：
 ```
+```
 python merge_txtand_npy.py
 ```
 ### Get the training negative sample of Hi-C
@@ -141,6 +142,7 @@ bash peakachucluster.sh
 [infy]                       The interaction strength of chromatin loop
 
 ```
+
 
 
 
