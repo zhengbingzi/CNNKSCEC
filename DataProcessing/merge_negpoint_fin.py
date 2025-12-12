@@ -3,15 +3,15 @@ import glob
 import re
 from collections import defaultdict
 
-# === 设置输入目录（请根据实际修改）===
-input_dir = '/path/of/Negative_name_sort/'  # ← 修改为你的实际文件夹路径
+# === 设置输入目录 ===
+input_dir = '/path/of/Negative_name_sort/'  # ← 修改为实际文件夹路径
 
 os.chdir(input_dir)
 
 # 匹配所有拆分文件
 all_files = glob.glob("negative_chr*-5KB-sort_*.txt")
 
-# 按染色体分类文件，例如 chr1、chr2、chrX 等
+# 按染色体分类文件
 chr_files = defaultdict(list)
 pattern = re.compile(r'negative_(chr[\w\d]+)-5KB-sort_(\d+)\.txt')
 
