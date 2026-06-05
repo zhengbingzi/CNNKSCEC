@@ -14,7 +14,8 @@ hic-straw=1.3.1
 joblib=1.3.1  
 numpy  
 scipy   
-pandas   
+pandas
+matplotlib
 h5py   
 cooler
 pysam  
