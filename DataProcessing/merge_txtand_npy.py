@@ -4,10 +4,13 @@ import argparse
 
 def add_txt_to_npy(txt_folder, npy_folder, output_folder):
     # Define file paths
+    #generate positive samples with location
     txt_files = [f"positive_chr{chrom}.txt" for chrom in range(1, 23)] + ["positive_chrX.txt"]
     npy_files = [f"KR_5kb_matrix_chr{chrom}_positive.npy" for chrom in range(1, 23)] + [
-        "KR_5kb_matrix_chrX_positive.npy"]
-
+    # generate negative samples with location
+    # txt_files = [f"negative_chr{chrom}-5KB-sort.txt" for chrom in range(1, 23)] + ["negative_chrX-5KB-sort.txt"]
+    # npy_files = [f"KR_5kb_matrix_chr{chrom}_negative.npy" for chrom in range(1, 23)] + [
+    #     "KR_5kb_matrix_chrX_negative.npy"]
     for txt_file, npy_file in zip(txt_files, npy_files):
         txt_path = os.path.join(txt_folder, txt_file)
         npy_path = os.path.join(npy_folder, npy_file)

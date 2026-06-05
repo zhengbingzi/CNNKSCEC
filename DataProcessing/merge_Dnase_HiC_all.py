@@ -4,6 +4,7 @@ import os
 import re
 
 def extract_chromosome_number(filename):
+
     match = re.search(r'chr(\d+)', filename)
     if match:
         return int(match.group(1))
@@ -29,11 +30,11 @@ def process_chr_matrices(chrom, dnase_npy_path, hic_npy_path, center_txt_path):
 
 def save_combined_data_noLabel(output_path, chromosomes,
                                dnase_dir, hic_dir, center_dir):
+
     all_data = []
     for chrom in chromosomes:
         chr_name = f'chr{chrom}'
 
-        # 拼路径（保持你之前 txt + npy 的命名习惯）
         center_file = os.path.join(center_dir, f'{chr_name}_matrixsize21_centerpoints.txt')
         hic_file    = os.path.join(hic_dir,   f'{chr_name}_matrixsize21.npy')
         dnase_file  = os.path.join(dnase_dir, f'dnase_{chr_name}.npy')
@@ -48,11 +49,11 @@ def save_combined_data_noLabel(output_path, chromosomes,
 
     # 与合并脚本完全相同的保存方式
     np.savez(output_path,
-             position=np.array([x[0] for x in all_data]),
+             position_data=np.array([x[0] for x in all_data]),
              hic_data=np.array([x[2] for x in all_data]),
              dnase_data=np.array([x[1] for x in all_data]))
              
-    print(f'预测集已生成 → {output_path}  总样本 {len(all_data)}')
+    print(f'预测集已生成 {output_path}  总样本 {len(all_data)}')
     # ===== 打印每个 key 的形状 =====
     with np.load(output_path) as f:
         for k in f.files:
@@ -62,11 +63,11 @@ def save_combined_data_noLabel(output_path, chromosomes,
 if __name__ == '__main__':
     chromosomes = [20, 21, 22]
 
-    center_dir = '/Path/of/chr_all_centerpoint_txt'
-    dnase_dir  = '/Path/of//DNase-ALL'
-    hic_dir    = '/Path/of//chr_all_sample'
+    center_dir = '/path/of/chr_all_centerpoint_txt'
+    dnase_dir  = '/path/of/DNase-All'
+    hic_dir    = '/path/of/chr_all_sample'
 
-    output_path = '/Path/of//Predict/chr20-22_predict.npz'
+    output_path = '/path/of/chr20-22_predict.npz'
 
     save_combined_data_noLabel(output_path, chromosomes,
                                dnase_dir, hic_dir, center_dir)
