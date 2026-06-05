@@ -66,11 +66,11 @@ Merge the negative sample center points for each chromosome by modifying the mer
 ```
 python merge_negpoint_fin.py
 ```
-Merge the negative samples for each chromosome, and run:
+Merge the negative samples with location for each chromosome, and run:
 ```
-python merge_chr_npy.py -f [Negativenpy_dir] -o [Negativenpy_Fin_dir]
+python merge_chr_npy.py -f [Negativenpy_dir] -o [NegativeNpy_dir]
+python merge_txtand_npy.py -d [NegativeTxtF_dir] -n [NegativeNpy_dir] -o [NegativeNpyF_dir]
 ```
-Here,the input file is the path to the Negativenpy file, and the output will be the path to the final negative sample file.
 ### Get the training positive sample of DNase
 Get the DNase-seq matrix corresponding to the positive sample center point file and construct the DNase-seq positive sample file. Modify the GetDnase_Matrix_Positive.py file, with the input file being the positive sample center point file. And run:
 ```
