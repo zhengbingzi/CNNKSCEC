@@ -19,24 +19,24 @@ def load_test_data(test_data_path):
     Data = np.load(test_data_path, allow_pickle=True)
     seqs = []
     labels = []
-    atac_info = []
+    dnase_info = []
     seqs.extend(Data['hic_data'].astype(np.float32))
-    atac_info.extend(Data['dnase_data'].astype(np.float32))
+    dnase_info.extend(Data['dnase_data'].astype(np.float32))
     labels.extend(Data['labels'].astype(np.float32))
     seqs = np.array(seqs)
     labels = np.array(labels)
-    atac_info = np.array(atac_info)
+    dnase_info = np.array(dnase_info)
 
     # 预处理数据
-    for i in range(len(atac_info)):
-        atac_info[i] = np.log10(1 + atac_info[i]*10)
-        atac_info[i] = atac_info[i] / np.max(atac_info[i] + 1)
+    for i in range(len(dnase_info)):
+        dnase_info[i] = np.log10(1 + dnase_info[i]*10)
+        dnase_info[i] = dnase_info[i] / np.max(dnase_info[i] + 1)
 
         seqs[i] = np.log10(1 + seqs[i] * 10)
         seqs[i] = seqs[i] / np.max(seqs[i] + 1)
 
     # 拼接序列数据
-    inputs = np.stack([seqs, atac_info], axis=1)  # shape: (340363, 2, 21, 21)
+    inputs = np.stack([seqs, dnase_info], axis=1)  # shape: (340363, 2, 21, 21)
 
     # 转换为 PyTorch 张量
     inputs_tensor = torch.tensor(inputs, dtype=torch.float32)

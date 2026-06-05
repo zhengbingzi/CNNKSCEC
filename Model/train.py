@@ -22,30 +22,41 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 Data = np.load("/mnt/sdf/zhengbingzi/Othertools/CNNKSCEC/5kb/newDNase-HiC1/Train-Val-Test/chr1-19_trainval.npz", allow_pickle=True)
 seqs = []
 labels = []
-atac_info = []
+dnase_info = []
 seqs.extend(Data['hic_data'].astype(np.float32))
-atac_info.extend(Data['dnase_data'].astype(np.float32))
+dnase_info.extend(Data['dnase_data'].astype(np.float32))
 labels.extend(Data['labels'].astype(np.float32))
 seqs = np.array(seqs)
 labels = np.array(labels)
-atac_info = np.array(atac_info)
+dnase_info = np.array(dnase_info)
 #labels = labels.reshape((labels.shape[0], 1))
 print(seqs.shape)
-print(atac_info.shape)
+print(dnase_info.shape)
 print(labels.shape)
+
+# 设置随机种子
+seed = 42
+random.seed(seed)
+np.random.seed(seed)
+torch.manual_seed(seed)
+torch.cuda.manual_seed(seed)
+torch.cuda.manual_seed_all(seed)  # 如果使用多 GPU
+torch.backends.cudnn.deterministic = True
+torch.backends.cudnn.benchmark = False
+
 # 生成随机索引
 indices = np.random.permutation(len(labels))
 # 根据随机索引同时打乱 hic_matrices, dnase_data 和 labels
 seqs = seqs[indices]
-atac_info = atac_info[indices]
+dnase_info = dnase_info[indices]
 labels = labels[indices]
-for i in range(len(atac_info)):
-    atac_info[i] = np.log10(1 + atac_info[i]*10)
-    atac_info[i] = atac_info[i]/np.max(atac_info[i]+1)
+for i in range(len(dnase_info)):
+    dnase_info[i] = np.log10(1 + dnase_info[i]*10)
+    dnase_info[i] = dnase_info[i]/np.max(dnase_info[i]+1)
 
     seqs[i] = np.log10(1 + seqs[i] * 10)
     seqs[i] = seqs[i]/np.max(seqs[i]+1)
-inputs = np.stack([seqs, atac_info], axis=1)  
+inputs = np.stack([seqs, dnase_info], axis=1)
 
 inputs_tensor = torch.tensor(inputs, dtype=torch.float32)
 labels_tensor = torch.tensor(labels, dtype=torch.float32)
@@ -70,15 +81,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.to(device)
 criterion = nn.BCELoss() 
 optimizer = optim.Adam(model.parameters(), lr=0.001)
-# 设置随机种子
-seed = 42
-random.seed(seed)
-np.random.seed(seed)
-torch.manual_seed(seed)
-torch.cuda.manual_seed(seed)
-torch.cuda.manual_seed_all(seed)  # 如果使用多 GPU
-torch.backends.cudnn.deterministic = True
-torch.backends.cudnn.benchmark = False
+
 # Function to evaluate model
 def evaluate(model, data_loader):
     model.eval()
