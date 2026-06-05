@@ -109,6 +109,7 @@ Extracting the center point files from the Hi-C submatrix of the entire chromoso
 python Getchr_all_center_point.py
 python get_all_dnase.py
 python merge_Dnase_HiC_all.py
+python merge_20-22_npz.py
 ```
 ### Prediction of chromatin loops using CNNKSCEC
 Run the following code to predict the chromatin loops of the entire genome:
