@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import argparse
 
@@ -7,6 +8,7 @@ def add_txt_to_npy(txt_folder, npy_folder, output_folder):
     #generate positive samples with location
     txt_files = [f"positive_chr{chrom}.txt" for chrom in range(1, 23)] + ["positive_chrX.txt"]
     npy_files = [f"KR_5kb_matrix_chr{chrom}_positive.npy" for chrom in range(1, 23)] + [
+        "KR_5kb_matrix_chrX_negative.npy"]
     # generate negative samples with location
     # txt_files = [f"negative_chr{chrom}-5KB-sort.txt" for chrom in range(1, 23)] + ["negative_chrX-5KB-sort.txt"]
     # npy_files = [f"KR_5kb_matrix_chr{chrom}_negative.npy" for chrom in range(1, 23)] + [
